@@ -1,0 +1,137 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    signingConfigs {
+        debug {
+            storeFile file('/Users/bjit/Desktop/alise/key')
+            storePassword 'moon7306'
+            keyAlias 'key0'
+            keyPassword 'moon7306'
+        }
+    }
+    namespace 'com.example.test_buildflavour'
+    compileSdk 34
+
+
+
+    defaultConfig {
+        applicationId "com.example.test_buildflavour"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            applicationIdSuffix ".release"
+            minifyEnabled true
+            debuggable false
+            signingConfig debug.signingConfig
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_API", '"https://www.test_release.com"'
+            buildConfigField "int", "last_version", "8"
+        }
+
+        stage{
+            applicationIdSuffix ".stage"
+            minifyEnabled false
+            signingConfig debug.signingConfig
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_API", '"https://www.test_stage.com"'
+            buildConfigField "int", "last_version", "7"
+        }
+
+        debug{
+            applicationIdSuffix '.debug'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_API", '"https://www.test_debug.com"'
+            buildConfigField "int", "last_version", "6"
+        }
+
+        honda_debug{
+            applicationIdSuffix '.debug_honda'
+            minifyEnabled false
+            signingConfig debug.signingConfig
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_API", '"https://www.test_honda_debug.com"'
+            buildConfigField "int", "last_version", "5"
+        }
+
+        honda_stage{
+            applicationIdSuffix '.stage_honda'
+            minifyEnabled false
+            signingConfig debug.signingConfig
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_API", '"https://www.test_honda_stage.com"'
+            buildConfigField "int", "last_version", "4"
+        }
+
+        honda_release{
+            applicationIdSuffix '.release_honda'
+            minifyEnabled true
+            debuggable false
+            signingConfig debug.signingConfig
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_API", '"https://www.test_honda_release.com"'
+            buildConfigField "int", "last_version", "3"
+        }
+
+        orix_debug{
+            applicationIdSuffix '.debug_orix'
+            minifyEnabled false
+            signingConfig debug.signingConfig
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_API", '"https://www.test_orix_debug.com"'
+            buildConfigField "int", "last_version", "2"
+        }
+
+        orix_stage{
+            applicationIdSuffix '.stage_orix'
+            minifyEnabled false
+            signingConfig debug.signingConfig
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_API", '"https://www.test_orix_stage.com"'
+            buildConfigField "int", "last_version", "1"
+        }
+
+        orix_release{
+            applicationIdSuffix '.release_orix'
+            minifyEnabled true
+            debuggable false
+            signingConfig debug.signingConfig
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_API", '"https://www.test_orix_release.com"'
+            buildConfigField "int", "last_version", "0"
+        }
+
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    viewBinding{
+        enable true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
